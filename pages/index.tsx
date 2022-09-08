@@ -3,6 +3,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Banner from '../components/Banner'
 import Header from '../components/Header'
+import Row from '../components/Row'
 import { Movie } from '../typings'
 import requests from '../utils/requests'
 
@@ -22,7 +23,7 @@ const Home = ({ netflixOriginals, trendingNow, topRated, actionMovies, comedyMov
   // console.log(netflixOriginals, trendingNow, topRated, actionMovies, comedyMovies, horrorMovies, romanceMovies, documentaries)
 
   return (
-    <div className="relative h-screen bg-gradient-to-b from-gray-900/10 to-[#010511]">
+    <div className="relative bg-gradient-to-b from-gray-900/10 to-[#010511]">
       <Head>
         <title>Netflix Clone</title>
         <link rel="icon" href="/favicon.ico" />
@@ -31,15 +32,18 @@ const Home = ({ netflixOriginals, trendingNow, topRated, actionMovies, comedyMov
       <nav>
         <Header />
       </nav>
-      <main className='relative' >
+      <main className='' >
         <Banner netflixOriginals = {netflixOriginals} />
         {/* Banner */}
-        <section>
-          {/* Row */}
-          {/* Row */}
-          {/* Row */}
-          {/* Row */}
-          {/* Row */}
+        <section className='px-4 py-7 mt-4 md:mx-4'>
+          <Row title="Trending Now" movies={trendingNow} isLargeRow />
+          <Row title="Netflix Originals" movies={netflixOriginals} />
+          <Row title="Top Rated" movies={topRated} />
+          <Row title="Action Movies" movies={actionMovies} />
+          <Row title="Comedy Movies" movies={comedyMovies} />
+          <Row title="Horror Movies" movies={horrorMovies} />
+          <Row title="Romance Movies" movies={romanceMovies} />
+          <Row title="Documentaries" movies={documentaries} />
         </section>
       </main>
       {/* model */}
