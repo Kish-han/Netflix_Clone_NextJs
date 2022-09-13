@@ -1,25 +1,31 @@
+import { DocumentData } from 'firebase/firestore'
 import Image from 'next/image'
-import React from 'react'
+import { useRecoilState } from 'recoil'
+import { modalState, movieState } from '../atoms/modalAtom.'
 import { Movie } from '../typings'
 
 interface Props {
-    movie: Movie,
-    isLargeRow?: boolean
+  movie: Movie | DocumentData,
+  isLargeRow?: boolean
 }
 
-const Thumbnail = ({ movie, isLargeRow }: Props) => {
+function Thumbnail({ movie, isLargeRow }: Props) {
+  const [currentMovie, setCurrentMovie] = useRecoilState(movieState)
+  const [showModal, setShowModal] = useRecoilState(modalState)
 
-    // console.log(movie.title)
-
-    return (
-        <div className=' transition duration-300 hover:scale-105 '>
-            <div className={`relative ${isLargeRow ? "h-[300px] md:h-[400px]" : "h-28 md:h-36"} min-w-[180px] md:min-w-[260px]`}>
-                <Image src={`https://image.tmdb.org/t/p/w500${isLargeRow ? movie?.poster_path : movie?.backdrop_path
-                    }`} layout="fill" className='rounded-sm object-cover md:rounded cursor-pointer ' />
-            </div>
-            {/* <p className='flex items-center z-50' >{movie.name || movie.original_name || movie.title}</p> */}
-        </div>
-    )
+  return (
+    <div className=' transition duration-300 hover:scale-105 '
+      onClick={() => {
+        setShowModal(true)
+        setCurrentMovie(movie)
+      }}
+    >
+      <div className={`relative ${isLargeRow ? "h-[200px] w-[150px] md:h-[300px] md:w-[200px] " : "h-28 md:h-36 min-w-[180px] md:min-w-[260px]"}`}>
+        <Image src={`https://image.tmdb.org/t/p/w500${isLargeRow ? movie?.poster_path : movie?.backdrop_path
+          }`} layout="fill" className='rounded-sm object-fill md:rounded cursor-pointer ' />
+      </div>
+    </div>
+  )
 }
 
 export default Thumbnail
