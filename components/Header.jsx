@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { BellIcon, SearchIcon } from '@heroicons/react/solid'
 import Link from 'next/link'
+import useAuth from '../hooks/useAuth'
 
 const Header = () => {
 
   const [isScrolled, setIsScrolled] = useState(false)
+  const { logout } = useAuth()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -49,6 +51,7 @@ const Header = () => {
             src="https://ih0.redbubble.net/image.618427277.3222/flat,1000x1000,075,f.u2.jpg"
             alt="profilelogo"
             className='h-8 cursor-pointer rounded'
+            onClick={logout}
           />
         </Link>
       </div>
