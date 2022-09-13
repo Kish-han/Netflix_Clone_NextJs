@@ -32,7 +32,7 @@ const Login = () => {
                     <p className="mt-6 text-base md:text-xl w-full">Ready to watch? Enter your email to create or restart your membership</p>
                     <form action="" className="flex w-full h-10 mt-3 text-black">
                       <input type="text" className="w-[70%] md:w-[80%] px-4 outline-none" />
-                      <button className="md:px-2 px-1 bg-[#e50914] text-white cursor-pointer">Get Started<span>&#62;</span></button>
+                      <button className="md:px-2 px-1 bg-[#e50914] text-white cursor-pointer" onClick={() => setIsSignin(true)}>Get Started<span>&#62;</span></button>
                     </form>
                   </div>
                 </div>
